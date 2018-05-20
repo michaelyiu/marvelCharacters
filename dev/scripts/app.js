@@ -160,10 +160,10 @@ class App extends React.Component {
 
     handleHover(keyToCheck, keyName){
       console.log(keyName);
-      app.setState({
+      // app.setState({
         
-        charURL: keyName
-      })
+      //   charURL: keyName
+      // })
       // return "";
     }
 
