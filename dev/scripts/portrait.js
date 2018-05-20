@@ -4,15 +4,15 @@ import React from 'react';
 class Portrait extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            characters: this.props.charURL
-        };
+        // this.state = {
+        //     characters: this.props.charURL
+        // };
     };
 
     componentWillReceiveProps(nextProps){
-        this.setState({
-            characters: nextProps.charURL
-        })
+        // this.setState({
+        //     characters: nextProps.charURL
+        // })
     }
 
 
@@ -21,7 +21,7 @@ class Portrait extends React.Component {
         
         return(
             // <div className={this.props.portraitClassName}>
-                <img src={this.props.characters} />
+                <img src={`/marvel-images/large-image/${this.props.characterName}.png`} />
             // </div>
         )
 

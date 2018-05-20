@@ -31,9 +31,10 @@ class App extends React.Component {
           // iconClassName: "",
           // portraitClassName: ""
         }],
-        charURL: ''
+        charURL: '',
+        hoveredCharacter: null
     }; 
-
+    this.handleHover = this.handleHover.bind(this);
   }
 
   // getInitialState (){
@@ -159,7 +160,12 @@ class App extends React.Component {
 
 
     handleHover(keyToCheck, keyName){
-      console.log(keyName);
+      let {hoveredCharacter} = this.state
+      hoveredCharacter = keyName;
+      this.setState({
+        hoveredCharacter: hoveredCharacter
+      })
+      
       // app.setState({
         
       //   charURL: keyName
@@ -177,12 +183,13 @@ class App extends React.Component {
           <h1>Marvel Characters</h1>
           <div className="character-portrait">
           {/* <Portrait 
-            key={this.state.characters[0].key}
+            * key={this.state.characters[0].key}
             name={this.state.characters[0].name}
             icon={this.state.characters[0].icon}
             banner={this.state.characters[0].banner}
             portraitClassName={this.state.characters[0].portraitClassName}
             firebaseKey={this.state.characters[0].key}
+            
           /> */}
           {/* {this.state.characters.map((element, index) => {
             return <Portrait 
@@ -195,7 +202,7 @@ class App extends React.Component {
               firebaseKey={element.key} />
           })} */}
           
-          <Portrait characters={this.state.charURL} identifier=""/>
+          <Portrait characters={this.state.charURL} identifier="" characterName={this.state.hoveredCharacter}/>
           </div>
           <ul className="characters-container">
             {this.state.characters.map((element, index) => {
