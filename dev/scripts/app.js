@@ -121,7 +121,7 @@ class App extends React.Component {
     }
 
     async handleClick(keyToCheck, keyName){
-      this.movePortrait();
+      // this.movePortrait();
       this.playClickSound();
       console.log(keyName);
       
