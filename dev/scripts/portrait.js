@@ -7,7 +7,7 @@ class Portrait extends React.Component {
 
     render() {
         return(
-                <img src={`/marvel-images/large-image/${this.props.characterName}.png`} />
+                <img src={`./marvel-images/large-image/${this.props.characterName}.png`} />
         )
     }
 }
