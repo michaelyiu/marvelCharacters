@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Dropdown extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
             showMenu: false
@@ -35,15 +35,15 @@ class Dropdown extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.showMenu}>Soundtracks</button>
+                <button className="dropdown-menu" onClick={this.showMenu}>Soundtracks</button>
 
                 {
                     this.state.showMenu
                         ? (
                             <div className="soundtrack">
-                                <button>test1</button>
-                                <button>test2</button>
-                                <button>test3</button>
+                                <button className="track" onClick={() => this.props.playMusic(`${this.props.audioLib[0]}`)}>Ultimate Marvel vs Capcom 3</button>
+                                <button className="track" onClick={() => this.props.playMusic(`${this.props.audioLib[1]}`)}>Marvel Cinematics Universe</button>
+                                <button className="track" onClick={() => this.props.playMusic(`${this.props.audioLib[2]}`)}>Marvel vs Capcom 2</button>
                             </div>
                         ) 
                         : (

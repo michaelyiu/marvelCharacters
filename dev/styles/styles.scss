@@ -4,14 +4,24 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+body{
+    // background: url('../../marvel-images/marvelBG.jpg'), linear-gradient(to bottom, rgba(0,0,0, 0.2), rgba(0, 0, 0, 0.2));
+    // background-image: url('../../marvel-images/marvelBG.jpg'), linear-gradient(to bottom, rgba(0,0,0, 0.9), rgba(0, 0, 0, 0.2));
+    // background-blend-mode: lighten color-burn soft-light;
+    background-image: linear-gradient(to bottom, rgba(255,255,255, 0.95), rgba(0, 0, 0, 0.95) 100%), url('../../marvel-images/marvelBG.jpg');
+    // opacity: 0.2;
+}
 
 .wrapper{
     width: 90%;
     margin: 0 auto;
 }
+.flex-container-char{
+    display: flex;
+}
 
 .character-portrait{
-    // margin: 0 auto;
+    width: 100%;
     text-align: center;    
     img{
         height: 40vh; 
@@ -32,7 +42,34 @@ ul{
     display: inline-block;
     max-height: 75px;
     
-    img{
-        border-radius: 5px;
-    }
+    
 }
+
+
+
+.move{
+    background-color: black;
+}
+
+.dropdown-menu, .soundtrack{
+    position: absolute;
+    right: 0;    
+}
+.dropdown-menu, .track{
+    background-color: transparent;
+    border: none;
+}
+
+.soundtrack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 30px;
+    right: 0;
+}
+.track{
+    position: relative;
+    margin: 5px 0;
+}
+
