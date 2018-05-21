@@ -60,8 +60,8 @@ class App extends React.Component {
             
             let characterObject = {
               name: character,
-              icon: `./thumbnails/${character}.png`,
-              banner: `./large-image/${character}.png`,
+              icon: `../thumbnails/${character}.png`,
+              banner: `../large-image/${character}.png`,
               iconClassName: 'character-icon',
               portraitClassName: 'character-portrait',
               fullName: affiliation[key][character]
