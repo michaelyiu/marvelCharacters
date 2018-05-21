@@ -5,7 +5,8 @@ import md5 from 'md5';
 import firebase from 'firebase';
 import Icon from './Icon'
 import Portrait from './Portrait'
-
+import BackgroundMusic from './BackgroundMusic'
+import Dropdown from './Dropdown'
 // import hashing from './hashFunction';
 
 // Initialize Firebase
@@ -32,42 +33,13 @@ class App extends React.Component {
           // portraitClassName: ""
         }],
         charURL: '',
-        hoveredCharacter: null
+        hoveredCharacter: null,
+        currentAudio: new Audio("./music/mvc2-foraride.mp3")
     }; 
     this.handleHover = this.handleHover.bind(this);
+    this.playMusic = this.playMusic.bind(this);
   }
 
-  // getInitialState (){
-  //   console.log("reached");
-    
-  //   defaultCharacter = [{
-  //     name: "Wolverine",
-  //     banner: `./marvel-images/large-image/wolverine.png`,
-  //     iconClassName: 'character-icon',
-  //     portraitClassName: 'character-portrait'
-  //   }];
-
-  //   console.log(defaultCharacter);
-
-
-  //   this.setState({
-  //     characters: defaultCharacter
-  //   });
-  // }
-
-  // //makes it so you can only run this once.
-  // once(fn, context) {
-  //   var result;
-
-  //   return function () {
-  //     if (fn) {
-  //       result = fn.apply(context || this, arguments);
-  //       fn = null;
-  //     }
-
-  //     return result;
-  //   };
-  // }
 
     fillStates() {
       const dbRef = firebase.database().ref('affiliation');
@@ -88,8 +60,6 @@ class App extends React.Component {
               portraitClassName: 'character-portrait'
             };
             characterObject.key = key + " " + character;
-            // affiliation[key][character].key = character;
-            // console.log(characterObject.key);
             
             arrayOfObjects.push(characterObject);
           }          
@@ -109,9 +79,6 @@ class App extends React.Component {
     componentDidMount() {
       this.fillStates();
 
-      // this.state.characters[0] && this.state.characters[0].focus();
-      // this.state.characters.find("wolverine");
-
       const PRIV_KEY = "bd850bd2f3d2253e7a5db89b1ce45e89ab777718";
       const PUBLIC_KEY = "add222b556f382954b89547491d0a92f"
       const ts = new Date().getTime();
@@ -123,21 +90,6 @@ class App extends React.Component {
 
 
       const dbRef = firebase.database().ref('affiliation');
-
-      // dbRef.on('value', (snapshot) => {
-      //   // console.log(snapshot.val());
-      //   const data = snapshot.val();
-      //   for(let key in affiliation)
-      //   {
-      //     console.log(key);
-          
-      //     // affiliation.
-      //     // for(let key in affiliation[character]){
-
-      //     // }
-      //   }
-        
-      // })
 
 
       //axios api call to marvel
@@ -160,49 +112,48 @@ class App extends React.Component {
 
 
     handleHover(keyToCheck, keyName){
-      let {hoveredCharacter} = this.state
-      hoveredCharacter = keyName;
+      // let {hoveredCharacter} = this.state
+      // let hoveredCharacter = this.state.hoveredCharacter
+      // let hoveredCharacter = keyName;
       this.setState({
-        hoveredCharacter: hoveredCharacter
+        hoveredCharacter: keyName
       })
-      
-      // app.setState({
-        
-      //   charURL: keyName
-      // })
-      // return "";
     }
 
-    render() {
-      // console.log(this.state.characters);
+    setMusic(passedTrack){
+      this.setState({
+        currentAudio: passedTrack
+      })
+    }
+    playMusic(){
+
+      // const sound = $(this).children('#audio')[0];
+      // const audio = new Audio("./music/mvc2-foraride.mp3");
+      if(!this.state.currentAudio) return;
+
+      if (!this.state.currentAudio.paused){
+
+      }
+      // } console.log('isPlaying')
+      else{
+        this.state.currentAudio.currentTime = 0;
+        this.state.currentAudio.play();
+      }
       
+    
+      
+      
+    }
+
+
+    render() {
       return (
-        
         <div>
           <div className="wrapper">
+          <Dropdown />
           <h1>Marvel Characters</h1>
           <div className="character-portrait">
-          {/* <Portrait 
-            * key={this.state.characters[0].key}
-            name={this.state.characters[0].name}
-            icon={this.state.characters[0].icon}
-            banner={this.state.characters[0].banner}
-            portraitClassName={this.state.characters[0].portraitClassName}
-            firebaseKey={this.state.characters[0].key}
-            
-          /> */}
-          {/* {this.state.characters.map((element, index) => {
-            return <Portrait 
-              key={element.key}
-              name={element.name}
-              icon={element.icon}
-              banner={element.banner}
-              portraitClassName={element.portraitClassName}
-              handleHover={this.handleHover}
-              firebaseKey={element.key} />
-          })} */}
-          
-          <Portrait characters={this.state.charURL} identifier="" characterName={this.state.hoveredCharacter}/>
+            <Portrait characterName={this.state.hoveredCharacter}/>
           </div>
           <ul className="characters-container">
             {this.state.characters.map((element, index) => {
@@ -218,6 +169,13 @@ class App extends React.Component {
 
           </ul>
           </div>
+            
+          <BackgroundMusic playMusic={this.playMusic}
+          />
+
+
+          {/* <BackgroundMusic musicSection={this.state.musicSelected}/> */}
+
         </div>
       )
     }
