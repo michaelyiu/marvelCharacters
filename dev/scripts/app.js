@@ -57,11 +57,11 @@ class App extends React.Component {
         for (let key in affiliation) {
           for (let character in affiliation[key]){
             // console.log(affiliation[key][character]);
-            
+            let lowerCharacter = character.toLowerCase();
             let characterObject = {
               name: character,
-              icon: `../thumbnails/${character}.png`,
-              banner: `../large-image/${character}.png`,
+              icon: `./thumbnails/${lowerCharacter}.png`,
+              banner: `./large-image/${lowerCharacter}.png`,
               iconClassName: 'character-icon',
               portraitClassName: 'character-portrait',
               fullName: affiliation[key][character]
