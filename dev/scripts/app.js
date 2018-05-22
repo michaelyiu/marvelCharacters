@@ -51,14 +51,11 @@ class App extends React.Component {
     fillStates() {
       const dbRef = firebase.database().ref('affiliation');
       dbRef.on('value', (snapshot) => {
-        // console.log(snapshot.val());
-        // const characterObject = {};
         const arrayOfObjects = [];
         const affiliation = snapshot.val();
 
         for (let key in affiliation) {
           for (let character in affiliation[key]){
-            // console.log(affiliation[key][character]);
             let lowerCharacter = character.toLowerCase();
             let characterObject = {
               name: character,
@@ -116,9 +113,6 @@ class App extends React.Component {
     }
 
     handleHover(keyToCheck, keyName){
-      // let {hoveredCharacter} = this.state
-      // let hoveredCharacter = this.state.hoveredCharacter
-      // let hoveredCharacter = keyName;
       this.playHoverSound();
       this.setState({
         hoveredCharacter: keyName
@@ -126,10 +120,8 @@ class App extends React.Component {
     }
 
     async handleClick(keyToCheck, keyName){
-      // this.movePortrait();
+      // this.movePortrait(); for stretch goal
       this.playClickSound();
-      console.log(keyName);
-      
       const PRIV_KEY = "bd850bd2f3d2253e7a5db89b1ce45e89ab777718";
       const PUBLIC_KEY = "add222b556f382954b89547491d0a92f"
       const ts = new Date().getTime();
@@ -137,7 +129,6 @@ class App extends React.Component {
       let hashedString = ts + PRIV_KEY + PUBLIC_KEY;
       // //md5 is a hashing function. we pass the concatenated string into it as a parameter
       let URL = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${md5(hashedString)}&name=${keyName}`
-      console.log(URL);
       
       let desc;
       // //axios api call to marvel
@@ -169,7 +160,6 @@ class App extends React.Component {
       else{
         currentAudioCopy.src = passedTrack;
       }
-      console.log(currentAudioCopy);
       
       this.setState({
         currentAudio: currentAudioCopy
@@ -178,10 +168,6 @@ class App extends React.Component {
 
     playMusic(passedTrack){
       this.setMusic(passedTrack);
-      console.log(passedTrack);
-      
-      console.log(this.state.currentAudio);
-      
       
       if(!this.state.currentAudio) return;
 
