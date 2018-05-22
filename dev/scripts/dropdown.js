@@ -36,7 +36,6 @@ class Dropdown extends React.Component {
         return (
             <div>
                 <button className="dropdown-menu" onClick={this.showMenu}>Soundtracks</button>
-
                 {
                     this.state.showMenu
                         ? (
