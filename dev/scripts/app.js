@@ -9,7 +9,6 @@ import Portrait from './Portrait'
 import BackgroundMusic from './BackgroundMusic'
 import Dropdown from './Dropdown'
 import InfoFrame from './infoFrame'
-// import hashing from './hashFunction';
 
 // Initialize Firebase
 var config = {
@@ -32,8 +31,6 @@ class App extends React.Component {
           banner: "",
           key: "",
           fullName: ""
-          // iconClassName: "",
-          // portraitClassName: ""
         }],
         charURL: '',
         hoveredCharacter: 'wolverine',
@@ -66,28 +63,19 @@ class App extends React.Component {
               fullName: affiliation[key][character]
             };
             characterObject.key = key + " " + character;
-            
             arrayOfObjects.push(characterObject);
           }          
-
         }
 
         this.setState({
           characters: arrayOfObjects
         })
-
-
       })
-      // return key;
     }
 
 
     componentDidMount() {
       this.fillStates();
-
-      
-
-      
     }
  
     playClickSound(){
@@ -168,18 +156,10 @@ class App extends React.Component {
 
     playMusic(passedTrack){
       this.setMusic(passedTrack);
-      
       if(!this.state.currentAudio) return;
-
-      
-        this.state.currentAudio.currentTime = 0;
-        this.state.currentAudio.volume = 0.1;
-        this.state.currentAudio.play();
-      
-      
-    
-      
-      
+      this.state.currentAudio.currentTime = 0;
+      this.state.currentAudio.volume = 0.1;
+      this.state.currentAudio.play();
     }
 
 
@@ -215,13 +195,6 @@ class App extends React.Component {
 
           </ul>
           </div>
-            
-          {/* <BackgroundMusic playMusic={this.playMusic} */}
-          {/* /> */}
-
-
-          {/* <BackgroundMusic musicSection={this.state.musicSelected}/> */}
-
         </div>
       )
     }

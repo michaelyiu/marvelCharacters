@@ -13,7 +13,6 @@ class Dropdown extends React.Component {
 
     showMenu(event){
         event.preventDefault();
-        
 
         this.setState({
             showMenu: true
@@ -29,8 +28,6 @@ class Dropdown extends React.Component {
             document.removeEventListener('click', this.closeMenu);
         });
     }
-    
-
 
     render() {
         return (

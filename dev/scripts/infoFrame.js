@@ -6,7 +6,6 @@ class InfoFrame extends React.Component {
     };
 
     render() {
-        
         return (
             <div className={`info-frame ${this.props.visible ? "show" : null}`}>
                 <h3 className="charName">
